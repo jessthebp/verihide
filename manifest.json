@@ -1,0 +1,57 @@
+{
+  "name": "VeriHide",
+  "version": "0.1.0",
+  "description": "Hide Verified users on Twitter.com",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "VeriHide",
+    "default_icon": "assets/ext-icon.png",
+    "default_area": "browser_action"
+  },
+    "background": {
+        "service_worker": "background.js"
+    },
+    "permissions": [
+        "storage",
+        "activeTab",
+      "scripting",
+      "tabs"
+    ],
+  "host_permissions": [
+    "https://twitter.com/*"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "https://twitter.com/*",
+               "https://mobile.twitter.com/*"
+            ],
+            "js": [
+                "contentScript.js",
+              "options.js",
+              "popup.js",
+              "script.js"
+            ]
+        }
+    ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "icon.png",
+                "contentScript.js",
+              "options.js",
+              "popup.js",
+              "script.js"
+      ],
+        "matches": [
+            "https://twitter.com/*"
+        ]
+    }
+        ],
+
+    "options_ui": {
+        "page": "options.html",
+        "open_in_tab": true
+    }
+}
